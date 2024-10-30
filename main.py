@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 from tkinter import *
 
+#Данные для копирования
 #sender_email = 'jadryshnikov.artur@yandex.ru'
 #recipient_mail = 'yadryshnikovartour@yandex.ru'
 #password = 'slcqlmgmvterfpma'
