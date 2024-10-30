@@ -2,21 +2,24 @@ import smtplib
 from email.message import EmailMessage
 from tkinter import *
 
+#sender_email = 'jadryshnikov.artur@yandex.ru'
+#recipient_mail = 'yadryshnikovartour@yandex.ru'
+#password = 'slcqlmgmvterfpma'
 
 def send_email():
-    sender_email = 'jadryshnikov.artur@yandex.ru'
-    recipient_mail = 'yadryshnikovartour@yandex.ru'
-    password = 'slcqlmgmvterfpma'
-    subject = 'Проверка связи'
-    body = 'Привет из программы на Питоне!'
-
-    server = None
+    sender_email = sender_email_entry.get()
+    recipient_mail = recipient_email_entry.get()
+    password = password_entry.get()
+    subject = subject_entry.get()
+    body = body_text.get(1.0, END)
 
     msg = EmailMessage()
     msg.set_content(body)
     msg['Subject'] = subject
     msg['From'] = sender_email
     msg['To'] = recipient_mail
+
+    server = None
 
     try:
         server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)
