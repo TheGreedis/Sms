@@ -6,7 +6,27 @@ from tkinter import *
 #recipient_mail = 'yadryshnikovartour@yandex.ru'
 #password = 'slcqlmgmvterfpma'
 
+
+def save():
+    with open('save.txt', 'w') as file:
+        file.write(sender_email_entry.get() +'\n')
+        file.write(recipient_email_entry.get() + '\n')
+        file.write(password_entry.get() + '\n')
+
+
+def load():
+    try:
+        with open('save.txt', 'r') as file:
+            info = file.readlines()
+            sender_email_entry.insert(0, info[0])
+            recipient_email_entry.insert(0, info[1])
+            password_entry.insert(0, info[2])
+    except FileNotFoundError:
+        pass
+
+
 def send_email():
+    save()
     sender_email = sender_email_entry.get()
     recipient_mail = recipient_email_entry.get()
     password = password_entry.get()
@@ -31,6 +51,7 @@ def send_email():
     finally:
         if server:
             server.quit()
+
 
 window = Tk()
 window.title('Отправка Email')
@@ -60,5 +81,7 @@ Button(text='Отправить письмо', command=send_email).grid(row=5, c
 
 result_label = Label(text='')
 result_label.grid(row=6, column=1, sticky=W)
+
+load()
 
 window.mainloop()
